@@ -1,0 +1,258 @@
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="section-{{ section.id }}-padding" style="background:{{ section.settings.color }};">
+  <div class="page-width">
+    <div class="cus-mn-head">
+      <h5>{{ section.settings.small }}</h5>
+      <h3>{{ section.settings.heading }}</h3>
+    </div>
+    <div class="mn-flex">
+    <div class="block-flex">
+      {% for block in section.blocks %}
+        <div class="block-inner b-inner-{{ forloop.index }}">
+          <div class="block-img">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url:"master" }}">
+              {% endif %}
+          </div>
+          <div class="block-content">
+            <h4>{{ block.settings.b_heading }}</h4>
+            <div class="b-rich">{{ block.settings.b_heading1 }}</div>
+          </div>
+        </div>
+        {% endfor %}
+     </div>
+      <div class="second-cols-section">
+         <div class="sec-img">
+            {% if section.settings.image1 != blank %}
+              <img src="{{ section.settings.image1 | img_url:"master" }}">
+              {% endif %}
+          </div>
+         <div class="sec-img2">
+            {% if section.settings.image2 != blank %}
+              <img src="{{ section.settings.image2 | img_url:"master" }}">
+              {% endif %}
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+<style>
+  .cus-mn-head h5{
+    font-size:14px;
+    font-weight:700;
+    color:rgb(102, 119, 170);
+    line-height:16.8px;
+    margin:0;
+    padding-bottom:14px;
+  }
+  .cus-mn-head h3{
+    font-size:40px;
+    font-weight:700;
+    color: rgb(0, 28, 114);
+    line-height:48px;
+  }
+  .mn-flex{
+    margin-top:45px;
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+    gap: 30px;
+  }
+
+  .block-flex {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+column-gap: 35px;
+}
+
+  .block-img {
+    width: 20%;
+}
+
+  .block-img img {
+    width:100%;
+    border-radius:50%;
+  }
+  .block-content h4{
+    margin:0;
+    padding-top:10px;
+     font-size:20px;
+    font-weight:700;
+    color: rgb(0, 28, 114);
+    line-height:28px;
+  }
+
+  .b-rich{
+     font-size:16px;
+    font-weight:400;
+    color: rgb(0, 28, 114);
+    line-height:24px;
+    margin:0;
+  }
+
+  .block-inner {
+    /* padding: 20px 24px; */
+        height: 240px;
+}
+
+  .block-inner.b-inner-1 {
+    border-right: 1px solid rgb(0, 28, 114);
+}
+
+  .block-inner.b-inner-3 {
+    border-top: 1px solid rgb(0, 28, 114);
+    padding-top: 30px;
+}
+
+  .block-inner.b-inner-4 {
+    padding-top: 20px;
+    border-top: 1px solid rgb(0, 28, 114);
+}
+
+  .sec-img img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+  .second-cols-section {
+    position: relative;
+}
+
+  .sec-img2 {
+    position: absolute;
+    top: -50px;
+    right: 10%;
+    overflow:hidden;
+}
+
+  .sec-img2 img {
+    width:100%;
+    border-radius: 50%;
+  }
+
+  @media(max-width:768px){
+      .block-flex {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+   row-gap: 20px;
+}
+
+    .block-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+      height:auto;
+}
+
+     .block-inner.b-inner-1 {
+    border-right: none;
+}
+
+  .block-inner.b-inner-3 {
+    border-top: none;
+    /* padding-top: 30px; */
+}
+
+  .block-inner.b-inner-4 {
+    /* padding-top: 20px; */
+    border-top: none;
+}
+
+    .second-cols-section {
+    position: relative;
+    margin-top: 50px;
+}
+  }
+</style>
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "small",
+        "label": "Small Hedaing"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Hedaing"
+      },
+      {
+        "type": "image_picker",
+        "id": "image1",
+        "label": "selecy image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image2",
+        "label": "selecy image"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "background color"
+      },
+      {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name":"block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "select image"
+          },
+          {
+            "type": "text",
+            "id": "b_heading",
+            "label": "Hedaing"
+          },
+          {
+            "type": "richtext",
+            "id": "b_heading1",
+            "label": "content"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom Image & Text"
+      }
+    ]
+  }
+{% endschema %}

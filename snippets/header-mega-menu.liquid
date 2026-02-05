@@ -1,0 +1,370 @@
+{% comment %}
+  Renders a megamenu for the header.
+
+  Usage:
+  {% render 'header-mega-menu' %}
+{% endcomment %}
+
+<style>
+  .navbar {
+    display: flex;
+    gap: 40px;
+  }
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding-bottom: 0;
+    padding-inline: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .navbar li {
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbar li a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+  }
+
+  .anchor-tag-cus {
+    width: 100%;
+    margin: auto;
+  }
+
+  .hats-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    max-width: 1400px;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 285%;
+    height: auto;
+    margin-top: 2px;
+
+    box-shadow: 0 0 15px #0000001a;
+    z-index: 1;
+    padding: 30px;
+    transition: all 0.6s ease-in;
+    border-radius: 30px;
+   
+  }
+
+  .hats:hover .hats-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+</style>
+
+<nav class="header__inline-menu">
+  {% if section.settings.menu_checked %}
+    <div class="main">
+      <div class="main-flex navbar">
+        {% for block in section.blocks %}
+          {% if block.type == 'links' %}
+            <ul>
+              <li class="hats syco--color-{{ forloop.index }} ">
+                <a href="#">{{ block.settings.menuText }}</a>
+                {% if block.settings.text1 != blank %}
+                  <div class="hats-content ">
+                    <div class="syco-sub-menu">
+                      <div class="syco-main-title syco-mb-12 syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img1 != blank %}
+                            <img src="{{ block.settings.img1 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url1 }}">{{ block.settings.text1 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title  syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img2 != blank %}
+                            <img src="{{ block.settings.img2 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url2 }}">{{ block.settings.text2 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img3 != blank %}
+                            <img src="{{ block.settings.img3 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url3 }}">{{ block.settings.text3 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img4 != blank %}
+                            <img src="{{ block.settings.img4 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url4 }}">{{ block.settings.text4 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img5 != blank %}
+                            <img src="{{ block.settings.img5 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url5 }}">{{ block.settings.text5 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img6 != blank %}
+                            <img src="{{ block.settings.img6 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url6 }}">{{ block.settings.text6 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img7 != blank %}
+                            <img src="{{ block.settings.img7 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url7 }}">{{ block.settings.text7 }}</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="syco-sub-menu">
+                      <div class="syco-main-title syco-mb-12 syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img8 != blank %}
+                            <img src="{{ block.settings.img8 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url8 }}">{{ block.settings.text8 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img9 != blank %}
+                            <img src="{{ block.settings.img9 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url9 }}">{{ block.settings.text9 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img10 != blank %}
+                            <img src="{{ block.settings.img10 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url10 }}">{{ block.settings.text10 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img11 != blank %}
+                            <img src="{{ block.settings.img11 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url11 }}">{{ block.settings.text11 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img12 != blank %}
+                            <img src="{{ block.settings.img12 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url12 }}">{{ block.settings.text12 }}</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="syco-sub-menu">
+                      <div class="syco-main-title syco-mb-12 syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img13 != blank %}
+                            <img src="{{ block.settings.img13 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url13 }}">{{ block.settings.text13 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img14 != blank %}
+                            <img src="{{ block.settings.img14 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url14 }}">{{ block.settings.text14 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img15 != blank %}
+                            <img src="{{ block.settings.img15 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url15 }}">{{ block.settings.text15 }}</a>
+                        </div>
+                      </div>
+                      <div class="syco-main-title syco-grid syco-place-items-center  syco-grid-cols-2">
+                        <div class="syco-cus-img">
+                          {% if block.settings.img16 != blank %}
+                            <img src="{{ block.settings.img16 | img_url: 'master' }}" alt="">
+                          {% endif %}
+                        </div>
+                        <div class="anchor-tag-cus">
+                          <a href="{{ block.settings.url16 }}">{{ block.settings.text16 }}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </li>
+            </ul>
+          {% endif %}
+        {% endfor %}
+
+        {% comment %}
+          {% for block in section.blocks %}
+            {% if block.type == "image" %}
+                <ul>
+                  <li class="hats syco--color-{{ forloop.index }} ">
+                    <a href="#">{{ block.settings.menuText }}</a>
+                    {% if block.settings.text1 != blank %}
+                      <div class="hats-content ">
+                        <div class="syco-sub-menu ">
+                          <div class="syco-main-title syco-grid syco-place-items-center syco-gap-1 syco-grid-cols-2">
+                            <div class="syco-cus-img">
+                              <img src="{{ block.settings.img1 | img_url: 'master' }}" alt="">
+                            </div>
+                            <div class="anchor-tag-cus">
+                              <a href="{{ block.settings.url1 }}">{{ block.settings.text1 }}</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </li>
+                </ul>
+              {%endif%}
+          {% endfor %}
+        {% endcomment %}
+      </div>
+    </div>
+
+  {% else %}
+    <ul class="list-menu list-menu--inline" role="list">
+      {%- for link in section.settings.menu.links -%}
+        <li>
+          {%- if link.links != blank -%}
+            <header-menu>
+              <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
+                <summary
+                  id="HeaderMenu-{{ link.handle }}"
+                  class="header__menu-item list-menu__item link focus-inset"
+                >
+                  <span
+                    {%- if link.child_active %}
+                      class="header__active-menu-item"
+                    {% endif %}
+                  >
+                    {{- link.title | escape -}}
+                  </span>
+                  {% render 'icon-caret' %}
+                </summary>
+                <div
+                  id="MegaMenu-Content-{{ forloop.index }}"
+                  class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+                  tabindex="-1"
+                >
+                  <ul
+                    class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+                    role="list"
+                  >
+                    {%- for childlink in link.links -%}
+                      <li>
+                        <a
+                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                          href="{{ childlink.url }}"
+                          class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                          {% if childlink.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          {{ childlink.title | escape }}
+                        </a>
+                        {%- if childlink.links != blank -%}
+                          <ul class="list-unstyled" role="list">
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </details>
+            </header-menu>
+          {%- else -%}
+            <a
+              id="HeaderMenu-{{ link.handle }}"
+              href="{{ link.url }}"
+              class="header__menu-item list-menu__item link link--text focus-inset"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              <span
+                {%- if link.current %}
+                  class="header__active-menu-item"
+                {% endif %}
+              >
+                {{- link.title | escape -}}
+              </span>
+            </a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {% endif %}
+</nav>

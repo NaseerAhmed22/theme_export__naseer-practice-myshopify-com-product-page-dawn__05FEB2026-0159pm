@@ -1,0 +1,166 @@
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet" />
+  
+
+<section class="pp-reviews" style="background-image:url({{ section.settings.bg_image | image_url }});">
+  <div class="pp-overlay"></div>
+  <div class="page-width pp-inner">
+
+    <!-- TOP CONTENT -->
+    <div class="pp-top">
+      <div class="pp-text">
+        <h2 class="pp-heading">{{ section.settings.heading }}</h2>
+        <p class="pp-desc">{{ section.settings.description }}</p>
+
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="pp-btn">{{ section.settings.button_label }}</a>
+        {% endif %}
+
+        {% if section.settings.subtext != blank %}
+          <div class="pp-subtext">{{ section.settings.subtext }}</div>
+        {% endif %}
+      </div>
+
+      <div class="pp-image">
+        {% if section.settings.main_image != blank %}
+          <img src="{{ section.settings.main_image | image_url }}" alt="" />
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="pp-divider"></div>
+
+    <!-- REVIEWS SLIDER -->
+    <div class="pp-reviews-slider">
+      {% for block in section.blocks %}
+        <div class="pp-review">
+          <p class="pp-review-text">“{{ block.settings.review }}”</p>
+          <div class="pp-review-meta">
+            <span class="pp-stars">★★★★★</span>
+            <span class="pp-author">{{ block.settings.author }}</span>
+            {% if block.settings.date != blank %}
+              <span class="pp-date">— {{ block.settings.date }}</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.pp-reviews{
+  padding:80px 0;
+  background-size:cover;
+  background-position:center;
+}
+
+
+.pp-top{
+  display:grid;
+ grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap:60px;
+  align-items:center;
+}
+
+.pp-heading{
+  font-size:40px;
+  font-weight:700;
+  margin-bottom:16px;
+  background:linear-gradient(90deg,#9333EA 0%,#2563EB 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.pp-desc{
+  font-size:16px;
+  {% comment %} max-width:420px; {% endcomment %}
+  margin-bottom:24px;
+}
+.pp-btn{
+  display:inline-block;
+  background:#6D28D9;
+  color:#fff;
+  padding:12px 28px;
+  border-radius:30px;
+  font-weight:600;
+  margin-bottom:14px;
+}
+.pp-subtext{
+  font-size:13px;
+  opacity:.7;
+}
+
+.pp-image img{
+  width:100%;
+  border-radius:24px;
+}
+
+.pp-divider{
+  height:1px;
+  background:#e5e7eb;
+  margin:60px 0 40px;
+}
+
+{% comment %} .pp-review{
+  max-width:720px;
+  margin:0 auto;
+  text-align:center;
+} {% endcomment %}
+.pp-review-text{
+  font-size:18px;
+  margin-bottom:14px;
+}
+.pp-review-meta{
+  font-size:13px;
+  opacity:.7;
+}
+.pp-stars{ letter-spacing:2px; }
+
+@media(max-width:900px){
+  {% comment %} .pp-top{ grid-template-columns:1fr; } {% endcomment %}
+}
+</style>
+
+<script>
+  $(document).ready(function(){
+    $('.pp-reviews-slider').slick({
+       arrows: true,
+      dots:true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Pixel Perfect Reviews",
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Background image" },
+    { "type": "image_picker", "id": "main_image", "label": "Right image" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Lorem ipsum dolor sit amet" },
+    { "type": "textarea", "id": "description", "label": "Description" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "subtext", "label": "Sub text", "default": "Over 100,000+ Happy Customers" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "review", "label": "Review text" },
+        { "type": "text", "id": "author", "label": "Author" },
+        { "type": "text", "id": "date", "label": "Date" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Pixel Perfect Reviews" }
+  ]
+}
+{% endschema %}
